@@ -1,4 +1,4 @@
-Name: CI PIPELINE
+name: CI PIPELINE
 #se va a activar cuando se haga un push a main
 on:
   push:
