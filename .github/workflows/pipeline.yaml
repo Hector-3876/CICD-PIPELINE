@@ -1,0 +1,27 @@
+Name: CI PIPELINE
+#se va a activar cuando se haga un push a main
+on:
+  push:
+    branches: [main]
+
+#usamos ubuntu porque es ligero y rápido
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    #los pasos que vamos a seguir. El de checkout es una acción pre armada
+    # https://github.com/actions/checkout
+    steps:
+      - name: Checkout_code
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
