@@ -1,4 +1,6 @@
+#nombre del pipeline para probar que saldrá en github
 name: CI PIPELINE
+
 #se va a activar cuando se haga un push a main
 on:
   push:
@@ -9,19 +11,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    #los pasos que vamos a seguir. El de checkout es una acción pre armada
+    #los pasos que vamos a seguir. El de checkout es una acción pre armada por github
     # https://github.com/actions/checkout
+
+    # esta acción ya hecha lo que hace es que clona el repo en la maquina virtual en este caso que corre ubuntu
     steps:
       - name: Checkout_code
         uses: actions/checkout@v5
 
+      # esta acción lo que hace instalarle node version 16
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
+      # ahora sí ya ejecutas comando de linux npm install
       - name: Install dependencies
         run: npm install
 
+      # ejecuta el test.js que generamos
       - name: Run tests
         run: npm test
